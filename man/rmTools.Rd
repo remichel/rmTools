@@ -5,5 +5,5 @@
 \alias{rmTools}
 \title{rmTools: Collection of basic R functions}
 \description{
-rmTools: Collection of basic R functions
+In this package, I will collect all useful functions I wrote or modified and consider useful.
 }

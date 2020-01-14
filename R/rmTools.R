@@ -14,6 +14,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #' rmTools: Collection of basic R functions
+#'
+#' In this package, I will collect all useful functions I wrote or modified and consider useful.
 #' @docType package
 #' @name rmTools
 NULL
