@@ -1,4 +1,4 @@
-##' Creates a number of directories
+##' Moves a column in a dataframe to a specified position.
 ##' @description \code{moveme}
 ##' Moves a column in a dataframe to a specified position.
 ##' @param invec vector of names of the dataframe of interest gathered by names(dataframe)

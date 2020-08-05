@@ -1,7 +1,7 @@
 Package: rmTools
 Type: Package
 Title: Provides basic r functionalities
-Version: 0.1.0
+Version: 0.1.1
 Author: René Michel
 Maintainer: René Michel <r.michel@wwu.de>
 Description: This package provides fundamental functions for data analysis and data preparation. 

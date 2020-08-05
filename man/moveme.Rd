@@ -2,7 +2,7 @@
 % Please edit documentation in R/moveme.R
 \name{moveme}
 \alias{moveme}
-\title{Creates a number of directories}
+\title{Moves a column in a dataframe to a specified position.}
 \usage{
 moveme(invec, movecommand)
 }
