@@ -1,7 +1,7 @@
 Package: rmTools
 Type: Package
 Title: Provides basic r functionalities
-Version: 0.1.2
+Version: 0.1.3
 Author: René Michel
 Maintainer: René Michel <r.michel@wwu.de>
 Description: This package provides fundamental functions for data analysis and data preparation. 
@@ -9,3 +9,6 @@ License: GNU 3.0
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.0.2
+Imports: 
+    e1071 (>= 1.7.3),
+    bspec (>= 1.5)
