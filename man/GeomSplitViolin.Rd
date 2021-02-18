@@ -4,7 +4,9 @@
 \name{GeomSplitViolin}
 \alias{GeomSplitViolin}
 \title{enables geom_split_violin}
-\format{An object of class \code{GeomSplitViolin} (inherits from \code{GeomViolin}, \code{Geom}, \code{ggproto}, \code{gg}) of length 2.}
+\format{
+An object of class \code{GeomSplitViolin} (inherits from \code{GeomViolin}, \code{Geom}, \code{ggproto}, \code{gg}) of length 2.
+}
 \usage{
 GeomSplitViolin
 }

@@ -19,7 +19,7 @@ CircFisherTest(cdat, ndat, g, parametric = T, NR = 0)
 }
 \description{
 \code{CircFisherTest}
-Performs circular Fisher Test (from Pewsey, A., Neuhäuser, M., & Ruxton, G. D. (2013). Circular statistics in R. Oxford University Press.)
+Performs circular Fisher Test with code from (from Pewsey, A., Neuhäuser, M., & Ruxton, G. D. (2013). Circular statistics in R. Oxford University Press.)
 }
 \author{
 René Michel

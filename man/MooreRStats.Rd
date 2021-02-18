@@ -13,8 +13,8 @@ MooreRStats(ldat1, ldat2)
 }
 \description{
 \code{MooreRStats}
-Computes required stats for a Moore Test for circular data (from Pewsey, A., Neuhäuser, M., & Ruxton, G. D. (2013). Circular statistics in R. Oxford University Press.)
+Computes required stats for a Moore Test for circular data with code from (from Pewsey, A., Neuhäuser, M., & Ruxton, G. D. (2013). Circular statistics in R. Oxford University Press.)
 }
 \author{
-René Michel
+Rene Michel
 }

@@ -7,8 +7,6 @@
 MooreRTestRand(cosphi, sinphi, Ranks, NR)
 }
 \arguments{
-\item{cosphi}{cosphi}
-
 \item{sinphi}{sinphi}
 
 \item{Ranks}{ranks}
@@ -17,7 +15,7 @@ MooreRTestRand(cosphi, sinphi, Ranks, NR)
 }
 \description{
 \code{MooreRTestRand}
-Computes Moore Test for circular data (from Pewsey, A., Neuhäuser, M., & Ruxton, G. D. (2013). Circular statistics in R. Oxford University Press.)
+Computes Moore Test for circular data with code from (from Pewsey, A., Neuhäuser, M., & Ruxton, G. D. (2013). Circular statistics in R. Oxford University Press.)
 }
 \author{
 René Michel

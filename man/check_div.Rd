@@ -16,5 +16,5 @@ returns all elements of a vector that produce a modulo of 0 for a given number.
 check_div(seq(2,256,2), 456)
 }
 \author{
-Ren� Michel
+Ren攼㸹 Michel
 }

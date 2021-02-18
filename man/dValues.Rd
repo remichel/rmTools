@@ -15,7 +15,7 @@ dValues(cdat, ndat, g)
 }
 \description{
 \code{dValues}
-Computes dValues (from Pewsey, A., Neuhäuser, M., & Ruxton, G. D. (2013). Circular statistics in R. Oxford University Press.)
+Computes dValues with code from (from Pewsey, A., Neuhäuser, M., & Ruxton, G. D. (2013). Circular statistics in R. Oxford University Press.)
 }
 \author{
 René Michel

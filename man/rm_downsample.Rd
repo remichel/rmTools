@@ -11,6 +11,8 @@
 \item{f}{factor of downsampling (integer)}
 
 \item{method}{"filter" or "average" (uses time windows of f to average the time course) or "rollmean" (from zoo package)}
+
+\item{pad}{mean padding (defaults to 0)}
 }
 \description{
 \code{rm_downsample}
@@ -20,5 +22,5 @@ downsample a data vector and transform its corresponding time vector
 rm_downsample(c(1,-1,3, 4), c(1,2,3,4), 2)
 }
 \author{
-Ren� Michel
+Ren攼㸹 Michel
 }

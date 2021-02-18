@@ -15,7 +15,7 @@ FgVal(dvals, ndat, g)
 }
 \description{
 \code{MooreRTestRand}
-Computes FgVal (from Pewsey, A., Neuhäuser, M., & Ruxton, G. D. (2013). Circular statistics in R. Oxford University Press.)
+Computes FgVal with code from (from Pewsey, A., Neuhäuser, M., & Ruxton, G. D. (2013). Circular statistics in R. Oxford University Press.)
 }
 \author{
 René Michel

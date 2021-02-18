@@ -29,6 +29,8 @@ dsa_fft(
 
 \item{window}{Windowing whole time series (default = 'tukey', also available: 'hanning', 'none')}
 
+\item{scaling}{Rescaling the data (default: 'z' for z-transform, also available: 'none' )}
+
 \item{padding}{Padding the data (default: 'zeros' for zero-padding, also available: 'mean', 'none')}
 
 \item{desired_res}{Padding the data up to desired_res (automatically evaluates necessary number of pads to achieve the resolution, default = 1)}
@@ -39,13 +41,11 @@ dsa_fft(
 
 \item{single_sided}{Single-sided frequency spectum (default = T)}
 
-\item{out}{By default, output is Mod (Amplitude) of the signal. Change to 'arg' to get phase.}
+\item{out}{By default, output is Mod (Amplitude) of the signal. Change to 'arg' to get phase or 'complex' to get the complex output.}
 
 \item{alpha}{only for tukey window}
 
 \item{verbose}{T/F}
-
-\item{scalingRescaling}{the data (default: 'z' for z-transform, also available: 'none' )}
 }
 \description{
 \code{dsa_fft}
@@ -55,5 +55,5 @@ If your input data is organized with time = rows, change time argument to 'row'.
 Both sampling frequency and desired frequency resolution (Bin width per frequency bin of FFT) needs to be in Hz.
 }
 \author{
-René Michel
+Rene Michel
 }

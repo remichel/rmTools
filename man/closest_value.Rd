@@ -18,5 +18,5 @@ b = seq(10,100,10)
 closest_value(a,b)
 }
 \author{
-Ren� Michel
+Ren攼㸹 Michel
 }

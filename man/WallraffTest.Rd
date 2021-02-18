@@ -15,7 +15,7 @@ WallraffTest(cdat, ndat, g)
 }
 \description{
 \code{WallraffTest}
-Performs a Wallraff Test for circular data (from Pewsey, A., Neuhäuser, M., & Ruxton, G. D. (2013). Circular statistics in R. Oxford University Press.)
+Performs a Wallraff Test for circular data with code from (from Pewsey, A., Neuhäuser, M., & Ruxton, G. D. (2013). Circular statistics in R. Oxford University Press.)
 }
 \author{
 René Michel
