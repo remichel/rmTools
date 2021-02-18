@@ -20,13 +20,14 @@
 ##' @param t time vector
 ##' @param f factor of downsampling (integer)
 ##' @param method "filter" or "average" (uses time windows of f to average the time course) or "rollmean" (from zoo package)
+##' @param pad mean padding (defaults to 0)
 ##' @examples
 ##' rm_downsample(c(1,-1,3, 4), c(1,2,3,4), 2)
 ##' @author René Michel
 ##' @export rm_downsample
 ##' @name rm_downsample
 
-rm_downsample <- function(vec, t, f, method){
+rm_downsample <- function(vec, t, f, method,pad = 0){
 
   # sanity checks
   if((f %% 1)) stop('f needs to be an integer')
@@ -41,7 +42,10 @@ rm_downsample <- function(vec, t, f, method){
   if(any(is.na(ds_centered_time))) ifelse(ds_centered_time == NA, max(t), ds_centered_time)
 
   if(method == "filter"){
-    ds_data = rep(decimate(vec,f),f)
+    #ds_data = rep(decimate(vec,f),f)
+    padded= c(rep(mean(vec), pad), vec,rep(mean(vec), pad))
+    filtered = filtfilt(cheby1(8,.05, .8/f), padded)[(pad+1):(pad+length(vec))]
+    ds_data = filtered[seq(1,length(filtered), f)]
   }else if(method == "average"){
     ds_data = as.vector(by(vec, sort(ds_time)[1:length(vec)], mean))
   }else if(method == "rollmean"){

@@ -1,4 +1,4 @@
-# Copyright (c) 2020 René Michel
+# Copyright (c) 2020 Rene Michel
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -7,7 +7,7 @@
 
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
 
 # You should have received a copy of the GNU General Public License
@@ -24,17 +24,17 @@
 ##' @param time are timepoints across columns or rows? default = "col"
 ##' @param detrend Detrending the data (default = 'linear', also available: 'dc', '2ndorder' or 'none')
 ##' @param window Windowing whole time series (default = 'tukey', also available: 'hanning', 'none')
-##' @param scalingRescaling the data (default: 'z' for z-transform, also available: 'none' )
+##' @param scaling Rescaling the data (default: 'z' for z-transform, also available: 'none' )
 ##' @param padding Padding the data (default: 'zeros' for zero-padding, also available: 'mean', 'none')
 ##' @param desired_res Padding the data up to desired_res (automatically evaluates necessary number of pads to achieve the resolution, default = 1)
 ##' @param sfreq sampling frequency of inserted datapoints
 ##' @param desired_out Extract amplitude values (default: 'amp', also available 'power' or 'logPower')
 ##' @param single_sided Single-sided frequency spectum (default = T)
-##' @param out By default, output is Mod (Amplitude) of the signal. Change to 'arg' to get phase.
+##' @param out By default, output is Mod (Amplitude) of the signal. Change to 'arg' to get phase or 'complex' to get the complex output.
 ##' @param alpha only for tukey window
 ##' @param verbose T/F
 ##' @examples
-##' @author René Michel
+##' @author Rene Michel
 ##' @export dsa_fft
 ##' @name dsa_fft
 
@@ -75,11 +75,9 @@ dsa_fft <- function(data, time = 'col', detrend = 'linear', window = 'tukey', sc
   if(is.data.frame(data)) data = as.matrix(data)
 
   # Reshape long to wide
-
   if(time == 'row') data = t(data)
 
   # Detrend
-
   if(detrend == 'linear'){
     data = t(detrend(t(data)))
     if(verbose) disp(paste('Detrended (linear)...\n'))
@@ -93,7 +91,6 @@ dsa_fft <- function(data, time = 'col', detrend = 'linear', window = 'tukey', sc
   }
 
   # Windowing
-
   winLength = dim(data)[2]
 
   if(window == 'hanning'){
@@ -109,7 +106,6 @@ dsa_fft <- function(data, time = 'col', detrend = 'linear', window = 'tukey', sc
   }
 
   # Scaling
-
   if(scaling == 'z'){
     data = data.frame(t(apply(data,1,scale)))
     if(verbose) disp('Z-transformation applied...\n')
@@ -118,7 +114,6 @@ dsa_fft <- function(data, time = 'col', detrend = 'linear', window = 'tukey', sc
   }
 
   # Padding
-
   if(padding != 'none'){
 
     n_padding = ceil(sfreq/desired_res-(dim(data)[2]-1)) # find number of pads to achieve required resolution
@@ -152,15 +147,16 @@ dsa_fft <- function(data, time = 'col', detrend = 'linear', window = 'tukey', sc
   n_freq = length(frequencies)
   if(verbose) disp(paste('Will compute FFT for', n_freq, 'frequency bins...\n'))
 
-  # Apply FFT (& extract modulus and argument)
-
-
+  # Apply FFT
   if(out == 'mod'){
     spectrum = as.data.frame(t(Mod(apply(as.matrix(data),1,fft))))
     if(verbose) disp('Extract amplitude  ...\n')
   }else if(out == 'arg'){
     phase = as.data.frame(t(Arg(apply(as.matrix(data),1,fft))))
     if(verbose) disp('Extract phase ...\n')
+  }else if(out == 'complex'){
+    fftOut = as.data.frame(t(apply(as.matrix(data),1, fft)))
+    if(verbose) disp('Extract complex FFT output ...\n')
   }
 
   # Extract single-sided frequency spectrum
@@ -168,7 +164,6 @@ dsa_fft <- function(data, time = 'col', detrend = 'linear', window = 'tukey', sc
     if(out == 'mod'){
       spectrum = spectrum[,2:(n_freq+1)]
       colnames(spectrum) = frequencies
-
       # Compute desired output
       if(desired_out == 'power'){
         spectrum = spectrum^2
@@ -179,23 +174,22 @@ dsa_fft <- function(data, time = 'col', detrend = 'linear', window = 'tukey', sc
       }else if(desired_out == 'amp'){
         if(verbose) disp('Simple amplitude was computed...\n')
       }
-
-
-
     }else if(out == 'arg'){
       phase = phase[,2:(n_freq+1)]
       colnames(phase) = frequencies
+    }else if(out == 'complex'){
+      fftOut = fftOut[, 2:(n_freq + 1)]
+      colnames(fftOut) = frequencies
     }
     if(verbose) disp('Single-sided spectrum was computed...\n')
-
   }
-
-
 
   # Return desired outputs
   if(out == 'mod'){
     return(spectrum)
   }else if(out == 'arg'){
     return(phase)
+  }else if(out == 'complex'){
+    return(fftOut)
   }
 }
