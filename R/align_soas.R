@@ -42,8 +42,8 @@ align_soas <- function(soa_vec, n_soa = 20, round_factor = 2, soa_spacing = 42, 
 
   if(difference_plot)       original_vec = soa_vec
 
-  if(verbose)               disp(paste0('Used n_soa =', n_soa, ', round factor = ', round_factor, ' decimals and soa spacing = ', soa_spacing,'ms.'))
-  if(verbose)               disp(paste(length(xtabs(~soa_vec)), 'different SOAs found. Will cut number of SOAs down to', n_soa,'.'))
+  if(verbose)               message(paste0('Used n_soa =', n_soa, ', round factor = ', round_factor, ' decimals and soa spacing = ', soa_spacing,'ms.'))
+  if(verbose)               message(paste(length(xtabs(~soa_vec)), 'different SOAs found. Will cut number of SOAs down to', n_soa,'.'))
 
   # round SOAs to merge them more easily
   while(length(unique(soa_vec))>n_soa && round_factor > 0){
@@ -53,7 +53,7 @@ align_soas <- function(soa_vec, n_soa = 20, round_factor = 2, soa_spacing = 42, 
 
   # group all SOAs with a smaller spacing than 0.5*soa_spacing
   if (length(unique(soa_vec))>n_soa){
-    if(verbose)             disp(paste(length(xtabs(~soa_vec)), 'different SOAs found after round procedure. Will continue to cut number of SOAs down to', n_soa,'.'))
+    if(verbose)             message(paste(length(xtabs(~soa_vec)), 'different SOAs found after round procedure. Will continue to cut number of SOAs down to', n_soa,'.'))
 
     soas = sort(unique(soa_vec))
     diff = soas[-1]-soas[-length(soas)]
@@ -64,7 +64,7 @@ align_soas <- function(soa_vec, n_soa = 20, round_factor = 2, soa_spacing = 42, 
 
     # Overview over new SOAs
     if(verbose){
-      disp(paste(length(xtabs(~soa_vec)), 'different SOAs found after difference vector calculation. If it diverges from', n_soa,'you should dig deeper into this problem manually.'))
+      message(paste(length(xtabs(~soa_vec)), 'different SOAs found after difference vector calculation. If it diverges from', n_soa,'you should dig deeper into this problem manually.'))
       print(xtabs(~soa_vec))
     }
 
@@ -82,7 +82,7 @@ align_soas <- function(soa_vec, n_soa = 20, round_factor = 2, soa_spacing = 42, 
   }else{
 
     # Overview over new SOAs
-    if(verbose) disp(xtabs(~soa_vec))
+    if(verbose) print(xtabs(~soa_vec))
     if(length(xtabs(~soa_vec)) != n_soa) stop('Unable to find a solution to align all SOAs. Recommended  to adjust rounding_factor.')
 
     # difference plot
