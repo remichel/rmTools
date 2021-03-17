@@ -38,7 +38,7 @@ align_soas <- function(soa_vec, n_soa = 20, round_factor = 2, soa_spacing = 42, 
   if(is.logical(verbose) == F)      stop('Verbose needs to be logical.')
   if(is.logical(difference_plot) == F)      stop('Difference_plot needs to be logical.')
   if(round_factor < 1)              stop('Round factor needs to be greater than 0')
-  if(mod(round_factor,1))           stop('Round factor needs to be an integer and no decimal number.')
+  if(round_factor%%1 != 0)           stop('Round factor needs to be an integer and no decimal number.')
 
   if(difference_plot)       original_vec = soa_vec
 
