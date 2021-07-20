@@ -85,7 +85,7 @@ dsa_fft <- function(data, time = 'col', detrend = 'linear', window = 'tukey', sc
     data = t(detrend(t(data), tt = 'constant'))
     if(verbose) message(paste('Detrended (dc only)...\n'))
   }else if(detrend == '2ndorder'){
-    message('WARNING:\n2ndorder detrending is still pending to be implemented. Will continue without detrending...\n')
+    data = t(apply(data, 1, function(x.col) lm(x.col ~ poly(c(1:length(x.col)), 2))$residuals))
   }else if(detrend == 'none'){
     if(verbose) message(paste('No detrending applied...\n'))
   }
