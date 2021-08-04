@@ -8,7 +8,8 @@ rm_install_packages(
   git_pkgs = NULL,
   git_private_pkgs = NULL,
   cran_pkgs = NULL,
-  load_after_install = T
+  load_after_install = T,
+  force = F
 )
 }
 \arguments{
@@ -19,6 +20,8 @@ rm_install_packages(
 \item{cran_pkgs}{A character vector with all package names from cran}
 
 \item{load_after_install}{defaults to T, loads all pkgs after installation}
+
+\item{force}{for github packages, force installation}
 }
 \value{
 
