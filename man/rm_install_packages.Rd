@@ -9,7 +9,8 @@ rm_install_packages(
   git_private_pkgs = NULL,
   cran_pkgs = NULL,
   load_after_install = T,
-  force = F
+  force_git = F,
+  force_git_private = F
 )
 }
 \arguments{
@@ -21,7 +22,9 @@ rm_install_packages(
 
 \item{load_after_install}{defaults to T, loads all pkgs after installation}
 
-\item{force}{for github packages, force installation}
+\item{force_git}{for public github packages, force installation}
+
+\item{force_git_private}{for private github packages, force installation}
 }
 \value{
 

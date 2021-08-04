@@ -4,22 +4,26 @@
 #' @param git_private_pkgs A character vector with all packages from private github repositories, specified as "username/reponame@branch"
 #' @param cran_pkgs A character vector with all package names from cran
 #' @param load_after_install defaults to T, loads all pkgs after installation
-#' @param force for github packages, force installation
+#' @param force_git for public github packages, force installation
+#' @param force_git_private for private github packages, force installation
 #'
 #' @return
 #' @export rm_install_packages
 #'
 #'
-rm_install_packages <- function(git_pkgs = NULL, git_private_pkgs = NULL, cran_pkgs = NULL, load_after_install = T, force = F){
+rm_install_packages <- function(git_pkgs = NULL, git_private_pkgs = NULL, cran_pkgs = NULL, load_after_install = T, force_git = F, force_git_private = F){
 
   # public github repositories
   if(!is.null(git_pkgs)){
     if(!("devtools" %in% installed.packages())){
       install.packages("devtools")
     }
+    git_pkgs_names = c()
     for(i in 1:length(git_pkgs)){
-      if(!(strsplit(strsplit(git_pkgs[i], "/")[[1]][[2]], "@")[[1]][[1]] %in% installed.packages())){
-        devtools::install_github(git_pkgs[i], force = force)
+      pkgname = strsplit(strsplit(git_pkgs[i], "/")[[1]][[2]], "@")[[1]][[1]]
+      if(!(pkgname %in% installed.packages())){
+        devtools::install_github(git_pkgs[i], force = force_git)
+        git_pkgs_names[i] = pkgname
       }
     }
 
@@ -34,10 +38,13 @@ if(!is.null(git_pkgs)){
   if(!("credentials" %in% installed.packages())){
     install.packages("credentials")
   }
+  git_private_pkgs_names = c()
   for(i in 1:length(git_pkgs)){
-    if(!(strsplit(strsplit(git_private_pkgs[i], "/")[[1]][[2]], "@")[[1]][[1]] %in% installed.packages())){
+    pkgname = strsplit(strsplit(git_private_pkgs[i], "/")[[1]][[2]], "@")[[1]][[1]]
+    if(!(pkgname %in% installed.packages())){
       credentials::set_github_pat()
-      devtools::install_github(git_private_pkgs[i], force = force, auth_token = devtools::github_pat(quiet = T))
+      devtools::install_github(git_private_pkgs[i], force = force_git_private, auth_token = devtools::github_pat(quiet = T))
+      git_private_pkgs_names[i] = pkgname
     }
   }
 }
@@ -52,7 +59,7 @@ if(!is.null(cran_pkgs)){
 }
 
 if(load_after_install == T){
-  rmTools::libraries(c(git_pkgs, git_private_pkgs, cran_pkgs))
+  rmTools::libraries(c(git_pkgs_names, git_private_pkgs_names, cran_pkgs))
 }
 
 }
