@@ -21,7 +21,7 @@ rm_install_packages <- function(git_pkgs = NULL, git_private_pkgs = NULL, cran_p
     }
     for(i in 1:length(git_pkgs)){
       pkgname = strsplit(strsplit(git_pkgs[i], "/")[[1]][[2]], "@")[[1]][[1]]
-      if(!(pkgname %in% installed.packages())){
+      if(!(pkgname %in% installed.packages()) | force_git == T){
         devtools::install_github(git_pkgs[i], force = force_git)
         git_pkgs_names[i] = pkgname
       }
@@ -41,7 +41,7 @@ if(!is.null(git_pkgs)){
   }
   for(i in 1:length(git_pkgs)){
     pkgname = strsplit(strsplit(git_private_pkgs[i], "/")[[1]][[2]], "@")[[1]][[1]]
-    if(!(pkgname %in% installed.packages())){
+    if(!(pkgname %in% installed.packages()) | force_git_private == T){
       credentials::set_github_pat()
       devtools::install_github(git_private_pkgs[i], force = force_git_private, auth_token = devtools::github_pat(quiet = T))
       git_private_pkgs_names[i] = pkgname
