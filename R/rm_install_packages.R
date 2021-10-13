@@ -39,7 +39,7 @@ if(!is.null(git_private_pkgs)){
   if(!("credentials" %in% installed.packages())){
     install.packages("credentials")
   }
-  for(i in 1:length(git_pkgs)){
+  for(i in 1:length(git_private_pkgs)){
     pkgname = strsplit(strsplit(git_private_pkgs[i], "/")[[1]][[2]], "@")[[1]][[1]]
     if(!(pkgname %in% installed.packages()) | force_git_private == T){
       credentials::set_github_pat()
