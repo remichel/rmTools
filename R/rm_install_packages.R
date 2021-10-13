@@ -32,7 +32,7 @@ rm_install_packages <- function(git_pkgs = NULL, git_private_pkgs = NULL, cran_p
 
 # private github repositories
 git_private_pkgs_names = c()
-if(!is.null(git_pkgs)){
+if(!is.null(git_private_pkgs)){
   if(!("devtools" %in% installed.packages())){
     install.packages("devtools")
   }
