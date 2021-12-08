@@ -1,6 +1,6 @@
 #' set_repo_path
 #'
-#' @param ... (Multiple) vectors of string pairs, where the first string is always the computername and the second string the desired repo path for that pc
+#' @param ... (Multiple) vectors of string pairs, where the first string is always the computername and the second string the desired repo path for that pc. Van also be list of vectors.
 #'
 #' @return character
 #' @export set_repo_path
@@ -9,6 +9,11 @@ set_repo_path <- function(...){
 
   # unpack ...
   vars = list(...)
+
+  # check if input was already a list
+  if(is.list(vars[[1]])){
+    vars = vars[[1]]
+  }
 
   # browse computer names
   for(i in 1:length(vars)){
